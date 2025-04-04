@@ -36,7 +36,7 @@ void typeOper(Stack* stack, Queue* queue, struct Token* token, int i) {
 
 void typeLeft(Stack* stack, struct Token* token, int i) { stackPush(stack, &token[i]); }
 
-void typeRight(Stack* stack, Queue* queue, struct Token* token, int i) {
+void typeRight(Stack* stack, Queue* queue) {
     while (!stackIsEmpty(stack) && strcmp(stackPeek(stack).value, "(") != 0) {
         enqueue(queue, stackPeek(stack));
         stackPop(stack);
@@ -77,7 +77,7 @@ Queue* polish(int count, struct Token* token) {
             typeLeft(stack, token, i);
         }
         else if (token[i].type == right_scobka) {
-            typeRight(stack, queue, token, i);
+            typeRight(stack, queue);
         }
         i++;
     }
@@ -119,8 +119,8 @@ double calculation(Queue* queue, int count, double x) {
 
             if ((strcmp(token->value, "-") == 0) && queueIsEmpty(queue)) {
                 if (dstackIsEmpty(stack)) {
-                    printf("ошибка унарного минуса\n");
-                    printf("ошибка функции\n");
+                    printf("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ\n");
+                    printf("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ\n");
                     dfreeStack(stack);
                 }
                 double oper1 = 0;
@@ -131,7 +131,7 @@ double calculation(Queue* queue, int count, double x) {
             }
             else {
                 if (dstackSize(stack) < 2) {
-                    printf("ошибка бинарного минуса\n");
+                    printf("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ\n");
                     dfreeStack(stack);
                     free(token);
                     return NAN;
@@ -155,7 +155,7 @@ double calculation(Queue* queue, int count, double x) {
                 }
                 else if (strcmp(token->value, "/") == 0) {
                     if (oper2 == 0) {
-                        printf("деление на 0\n");
+                        printf("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ 0\n");
                         dfreeStack(stack);
                         free(token);
                         return NAN;
@@ -191,7 +191,7 @@ double calculation(Queue* queue, int count, double x) {
                 }
                 else if (strcmp(token->value, "ctg") == 0) {
                     if (tan(operand) == 0) {
-                        printf("ctg не существует\n");
+                        printf("ctg пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\n");
                         dfreeStack(stack);
                         free(token);
                         return NAN;
@@ -202,7 +202,7 @@ double calculation(Queue* queue, int count, double x) {
                 }
                 else if (strcmp(token->value, "sqrt") == 0) {
                     if (operand < 0) {
-                        printf("sqrt не существует\n");
+                        printf("sqrt пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ\n");
                         dfreeStack(stack);
                         free(token);
                         return NAN;
@@ -212,7 +212,7 @@ double calculation(Queue* queue, int count, double x) {
                 }
             }
             else {
-                printf("ошибка функции\n");
+                printf("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ\n");
                 dfreeStack(stack);
                 free(token);
                 return NAN;
@@ -221,7 +221,7 @@ double calculation(Queue* queue, int count, double x) {
     }
    // dPrintStack(stack);
     if (dstackSize(stack) != 1) {
-        printf("ошибка. остались значения в стеке.\n");
+        printf("пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ.\n");
         free(token);
         dfreeStack(stack);
         return NAN;

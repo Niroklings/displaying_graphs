@@ -35,7 +35,7 @@ int reading(char* str, struct Token* tokens) {
 
         if (is_digit(str[i])) {
             int j = 0;
-            while (str[i] != '\0' && is_digit(str[i]) && (j < sizeof(token.value) - 1)) {
+            while (str[i] != '\0' && is_digit(str[i]) && (j < (int)sizeof(token.value) - 1)) {
                 token.value[j++] = str[i++];
             }
             token.value[j] = '\0';
@@ -45,7 +45,7 @@ int reading(char* str, struct Token* tokens) {
         }
         else if (str[i] != '\0' && is_letter(str[i])) {
             int j = 0;
-            while (str[i] != '\0' && (j < sizeof(token.value) - 1) && is_letter(str[i])) {
+            while (str[i] != '\0' && (j < (int)sizeof(token.value) - 1) && is_letter(str[i])) {
                 token.value[j++] = str[i++];
             }
             token.value[j] = '\0';
@@ -90,7 +90,7 @@ int prov_digit(const char* str) {
     while (str[i] != '\0') {
         if (str[i] == '.') {
             count_of_t++;
-            if (i == 0 || i == strlen(str) - 1) {
+            if (i == 0 || i == (int)strlen(str) - 1) {
                 return 0;
             }
         }

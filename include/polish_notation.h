@@ -13,7 +13,7 @@ void typeDigit(Queue* queue, struct Token* token, int i);
 void typeFunc(Stack* stack, struct Token* token, int i);
 void typeOper(Stack* stack, Queue* queue, struct Token* token, int i);
 void typeLeft(Stack* stack, struct Token* token, int i);
-void typeRight(Stack* stack, Queue* queue, struct Token* token, int i);
+void typeRight(Stack* stack, Queue* queue);
 Queue* polish(int count, struct Token* token);
 double calculation(Queue* queue, int count, double x);
 #endif
